@@ -1,13 +1,11 @@
+body {
+    background-color: #149892;
+}
 
-    .user {
-        margin-left: 9px;
-    }
-    .fa-trash {
-        color: #ff0000;
-    }
-    .fa-eye {
-        color: #33C1FF;
-    }
-    .fa-edit {
-        color: #358A12;
-    }
+
+.form {
+    position: relative;
+    margin: 0 auto;
+    width: 200px;
+    padding-top: 15%;
+}

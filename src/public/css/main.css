@@ -1,3 +1,15 @@
 body {
     margin-top: 3%;
 }
+.user {
+    margin-left: 9px;
+}
+.fa-trash {
+    color: #ff0000;
+}
+.fa-eye {
+    color: #33C1FF;
+}
+.fa-edit {
+    color: #358A12;
+}
