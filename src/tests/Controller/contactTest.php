@@ -41,7 +41,49 @@ class ContactTest extends TypeTestCase
         // check that $formData was modified as expected when the form was submitted
         $this->assertEquals($expected, $contact);
 
-//verifier si les champs sont valides verifie une methode de l'email et du tel
+    }
+
+    public function testCreateContactEmailOnError()
+    {
+        $formData = [
+            'lastname' => '',
+            'firstname' => '',
+            'email' => 'simon.amoyal4gmail.com',
+            'phone' => '',
+            'tag' => '',
+        ];
+        $contact = new Contact();
+        
+
+        $form = $this->factory->create(ContactType::class, $contact);
+        $expected = new Contact();
+        $expected->setLastname('Amo');
+        $expected->setFirstname('simon');
+        $expected->setEmail('simon.amoyal4@gmail.com');
+        $expected->setPhone('0647080827');
+        $expected->setTag('bureau');
+        $form->submit($formData);
+
+        $this->assertNotEquals($expected, $contact);
+
+
+    }
+
+    public function testCreateContactPhoneOnError()
+    {
+
+        $contact = new Contact();
+        $contact->setLastname('Amo');
+        $contact->setFirstname('simon');
+        $contact->setEmail('simon.amoyal4@gmail.com');
+        $contact->setPhone('064708082');
+        $contact->setTag('bureau');
+
+
+
+        $this->assertFalse($contact->getPhone() == 10);
+        $this->assertEquals('06', substr($contact->getPhone(), 0, 2));
+
 
 
     }
