@@ -33,6 +33,9 @@ class Contact
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
+     * @Assert\Email(
+     *   message = "l'email '{{ value }}' n'est pas valide."
+     * )
      */
     private $email;
 

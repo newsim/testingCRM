@@ -1,1 +1,38 @@
-{{form(form)}}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon repertoire!{% endblock %}
+
+{% block stylesheets %}
+    {{parent()}}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">  
+
+    <link href="{{ asset('css/new.css') }}" rel="stylesheet"/>
+{% endblock %}
+
+{% block body %}
+    {{ form_start(form) }}
+        <div class="my-custom-class-for-errors">
+            {{ form_errors(form) }}
+        </div>
+
+        <div class="form">
+            <div class=" ">
+                {{ form_row(form.lastname) }}
+            </div>
+            <div class=" " >
+                {{ form_row(form.firstname) }}
+            </div>
+            <div class=" " >
+                {{ form_row(form.email) }}
+            </div>
+            <div class=" " >
+                {{ form_row(form.phone) }}
+            </div>
+            <div class=" " >
+                {{ form_row(form.tag) }}
+            </div>
+        </div>
+    {{ form_end(form) }}
+
+{% endblock %}
