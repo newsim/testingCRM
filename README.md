@@ -10,3 +10,4 @@
 ## pour utiliser make et doctrine  
 - docker-compose exec php-fpm /bin/sh
 - composer require symfony/validator
+
