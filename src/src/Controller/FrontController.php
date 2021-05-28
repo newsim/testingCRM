@@ -55,6 +55,49 @@ class FrontController extends AbstractController
     }
 
     /**
+     * @Route("/delete/{id}", name="delete")
+     */
+    public function deleteContact(Request $request, int $id): Response
+    {
+    
+        $entityManager = $this->getDoctrine()->getManager();
+        $deleteContact = $entityManager->getRepository(Contact::class)->findOneBy(['id'=>$id]);
+        $entityManager->remove($deleteContact);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('index');
+    }
+
+    /**
+     * @Route("/edit/{id}", name="edit")
+     */
+    public function viewContact(Request $request, int $id): Response
+    {
+    
+        $entityManager = $this->getDoctrine()->getManager();
+        $viewContact = $entityManager->getRepository(Contact::class)->findOneBy(['id'=>$id]);
+
+        $form = $this->createForm(ContactType::class, $viewContact);
+    
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            // $form->getData() holds the submitted values
+            // but, the original `$contact` variable has also been updated
+            $contact = $form->getData();
+    
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($contact);
+            $entityManager->flush();
+    
+            return $this->redirectToRoute('index');
+        }
+
+        return $this->render('contact/new.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
      * @Route("/read/{id}", name="read")
      */
     public function readContact(Request $request, int $id): Response
@@ -68,8 +111,5 @@ class FrontController extends AbstractController
             'contact' => $viewContact,
         ]);
     }
-
-   
-
 
 }
