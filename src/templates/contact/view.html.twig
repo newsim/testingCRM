@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon repertoire!{% endblock %}
+
+{% block body %}
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Firstname</th>
+      <th scope="col">Lastname</th>
+      <th scope="col">email</th>
+      <th scope="col">phone</th>
+      <th scope="col">tag</th>
+
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+        <th scope="row">{{contact.id}}</th>
+        <td>{{contact.firstname}}</td>
+        <td>{{contact.lastname}}</td>
+        <td>{{contact.email}}</td>
+        <td>{{contact.phone}}</td>
+        <td>{{contact.tag}}</td>
+
+
+    </tr>  
+
+  </tbody>
+</table>
+
+
+{% endblock %}
